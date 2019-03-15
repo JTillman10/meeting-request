@@ -1,0 +1,16 @@
+<mat-grid-list cols="2" rowHeight="350px">
+  <mat-grid-tile [colspan]="1" [rowspan]="1">
+    <mat-card class="dashboard-card">
+      <mat-card-content class="dashboard-card-content">
+        <div class="centered-content mat-display-2">{{ currentSeconds | time }}</div>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="1" [rowspan]="1">
+    <mat-card class="dashboard-card">
+      <mat-card-content class="dashboard-card-content">
+        <div class="centered-content mat-display-2">{{ currentSeconds | money: 69 * 20 }}</div>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

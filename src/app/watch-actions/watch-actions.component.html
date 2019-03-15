@@ -1,0 +1,21 @@
+<mat-card class="action-card">
+  <mat-card-content>
+    <div class="grid-container">
+      <mat-grid-list cols="2" rowHeight="100px">
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <div class="centered-content">Multiplier</div>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <div class="centered-content">Number of people</div>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+  </mat-card-content>
+  <mat-divider></mat-divider>
+  <mat-card-actions>
+    <button mat-button (click)="clickStart()">START</button>
+    <button mat-button (click)="clickStop()">STOP</button>
+    <button mat-button (click)="clickReset()">RESET</button>
+    <button mat-button (click)="clickSave()">SAVE</button>
+  </mat-card-actions>
+</mat-card>
