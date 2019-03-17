@@ -7,6 +7,8 @@ import { Component, Input } from '@angular/core';
 })
 export class WatchComponent {
   @Input() currentSeconds: number;
+  @Input() multiplier: number;
+  @Input() numberOfPeople: number;
 
   constructor() {}
 }

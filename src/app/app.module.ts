@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,6 +14,7 @@ import { WatchComponent } from './watch/watch.component';
 import { WatchActionsComponent } from './watch-actions/watch-actions.component';
 import { TimePipe } from './watch/time.pipe';
 import { MoneyPipe } from './watch/money.pipe';
+import { SavedTimesComponent } from './saved-times/saved-times.component';
 
 @NgModule({
   declarations: [
@@ -22,9 +24,16 @@ import { MoneyPipe } from './watch/money.pipe';
     WatchComponent,
     WatchActionsComponent,
     TimePipe,
-    MoneyPipe
+    MoneyPipe,
+    SavedTimesComponent
   ],
-  imports: [BrowserModule, BrowserAnimationsModule, LayoutModule, MaterialModule],
+  imports: [
+    BrowserModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    LayoutModule,
+    MaterialModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,38 @@
+<mat-card *ngIf="times?.length > 0">
+  <mat-card-content>
+    <table mat-table [dataSource]="times">
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef>Date</th>
+        <td mat-cell *matCellDef="let element">{{ element.date | date }}</td>
+      </ng-container>
+      <ng-container matColumnDef="timeSpent">
+        <th mat-header-cell *matHeaderCellDef>Time Spent</th>
+        <td mat-cell *matCellDef="let element">{{ element.time | time }}</td>
+      </ng-container>
+      <ng-container matColumnDef="multiplier">
+        <th mat-header-cell *matHeaderCellDef>Multipler</th>
+        <td mat-cell *matCellDef="let element">{{ element.multiplier }}</td>
+      </ng-container>
+      <ng-container matColumnDef="numberOfPeople">
+        <th mat-header-cell *matHeaderCellDef>Number of people</th>
+        <td mat-cell *matCellDef="let element">{{ element.numberOfPeople }}</td>
+      </ng-container>
+      <ng-container matColumnDef="moneySpent">
+        <th mat-header-cell *matHeaderCellDef>Money Spent</th>
+        <td mat-cell *matCellDef="let element">
+          <strong>{{ element.time | money: element.multiplier * element.numberOfPeople }}</strong>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef>
+          <button mat-flat-button color="warn" (click)="onDeleteAll()">Delete All</button>
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-stroked-button color="warn" (click)="onDelete(element.id)">Delete</button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnsToDisplay"></tr>
+    </table>
+  </mat-card-content>
+</mat-card>

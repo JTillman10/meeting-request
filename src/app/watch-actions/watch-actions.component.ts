@@ -1,33 +1,56 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'watch-actions',
   templateUrl: './watch-actions.component.html',
   styleUrls: ['./watch-actions.component.scss']
 })
-export class WatchActionsComponent implements OnInit {
-  @Output() start: EventEmitter<any> = new EventEmitter<any>();
+export class WatchActionsComponent {
+  @Input() isRunning: boolean;
+
+  @Output() start: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
   @Output() stop: EventEmitter<any> = new EventEmitter<any>();
   @Output() reset: EventEmitter<any> = new EventEmitter<any>();
   @Output() save: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor() {}
+  form = this.fb.group({
+    multiplier: [10, Validators.required],
+    numberOfPeople: [10, Validators.required]
+  });
 
-  ngOnInit() {}
+  submitted = false;
 
-  clickStart() {
-    this.start.emit();
+  constructor(private fb: FormBuilder) {}
+
+  onStart() {
+    this.submitted = true;
+    if (this.form.valid) {
+      this.start.emit(this.form);
+    }
   }
 
-  clickStop() {
+  onStop() {
     this.stop.emit();
   }
 
-  clickReset() {
+  onReset() {
+    this.submitted = false;
+    this.form.reset();
     this.reset.emit();
   }
 
-  clickSave() {
+  onSave() {
     this.save.emit();
+  }
+
+  get multiplierInvalid() {
+    const control = this.form.get('multiplier');
+    return control.hasError('required') && (control.touched || this.submitted);
+  }
+
+  get numberOfPeopleInvalid() {
+    const control = this.form.get('numberOfPeople');
+    return control.hasError('required') && (control.touched || this.submitted);
   }
 }

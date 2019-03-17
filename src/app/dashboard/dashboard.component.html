@@ -1,4 +1,19 @@
 <div class="grid-container">
-  <watch [currentSeconds]="currentSeconds"></watch>
-  <watch-actions (start)="startWatch()" (stop)="stopWatch()" (reset)="resetWatch()"></watch-actions>
+  <watch
+    [currentSeconds]="currentSeconds"
+    [multiplier]="multiplier"
+    [numberOfPeople]="numberOfPeople"
+  ></watch>
+  <watch-actions
+    [isRunning]="isRunning"
+    (start)="startWatch($event)"
+    (stop)="stopWatch()"
+    (reset)="resetWatch()"
+    (save)="save()"
+  ></watch-actions>
+  <saved-times
+    [times]="times"
+    (delete)="deleteTime($event)"
+    (deleteAll)="deleteAllTimes()"
+  ></saved-times>
 </div>

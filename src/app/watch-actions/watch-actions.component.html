@@ -1,21 +1,57 @@
-<mat-card class="action-card">
-  <mat-card-content>
-    <div class="grid-container">
-      <mat-grid-list cols="2" rowHeight="100px">
-        <mat-grid-tile [colspan]="1" [rowspan]="1">
-          <div class="centered-content">Multiplier</div>
-        </mat-grid-tile>
-        <mat-grid-tile [colspan]="1" [rowspan]="1">
-          <div class="centered-content">Number of people</div>
-        </mat-grid-tile>
-      </mat-grid-list>
-    </div>
-  </mat-card-content>
-  <mat-divider></mat-divider>
-  <mat-card-actions>
-    <button mat-button (click)="clickStart()">START</button>
-    <button mat-button (click)="clickStop()">STOP</button>
-    <button mat-button (click)="clickReset()">RESET</button>
-    <button mat-button (click)="clickSave()">SAVE</button>
-  </mat-card-actions>
-</mat-card>
+<form [formGroup]="form">
+  <mat-card class="action-card">
+    <mat-card-content>
+      <div class="grid-container">
+        <mat-grid-list cols="2" rowHeight="100px">
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <div class="centered-content">
+              <mat-form-field>
+                <input
+                  matInput
+                  type="number"
+                  placeholder="Dollar amount / hour"
+                  formControlName="multiplier"
+                  [disabled]="isRunning"
+                />
+                <mat-error *ngIf="multiplierInvalid">You must enter a value</mat-error>
+              </mat-form-field>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <div class="centered-content">
+              <mat-form-field>
+                <input
+                  matInput
+                  type="number"
+                  placeholder="Number of people"
+                  formControlName="numberOfPeople"
+                  [disabled]="isRunning"
+                />
+                <mat-error *ngIf="numberOfPeopleInvalid">You must enter a value</mat-error>
+              </mat-form-field>
+            </div>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-actions>
+      <button mat-flat-button color="primary" (click)="onStart()" [disabled]="isRunning">
+        START
+      </button>
+      <button mat-flat-button color="warn" (click)="onStop()" [disabled]="!isRunning">
+        STOP
+      </button>
+      <button
+        mat-flat-button
+        color="accent"
+        (click)="onReset()"
+        [disabled]="isRunning"
+        type="reset"
+      >
+        RESET
+      </button>
+      <button mat-stroked-button (click)="onSave()" [disabled]="isRunning">SAVE</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
